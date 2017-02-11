@@ -4,6 +4,8 @@ set -o nounset # Treat unset variables as an error
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 set -x
 
+# TODO: Make ssh host dynamic
+
 # Example:
 # ./get_domain_ip_address.sh qemu+ssh://root@tnm-vm7/system centos-shilpa 172.16.15.0/24 br0
 
