@@ -1,0 +1,13 @@
+<network>
+    <name>routed_network</name>
+    <uuid>730d701b-0c7c-43ad-83af-cd87f6fd77b8</uuid>
+    <forward mode='route'/>
+    <bridge name='virbr0' stp='on' delay='0'/>
+    <mac address='52:54:00:b7:ef:c5'/>
+    <domain name='routed_network'/>
+    <ip address='192.168.100.1' netmask='255.255.255.0'>
+        <dhcp>
+            <range start='192.168.100.128' end='192.168.100.254'/>
+        </dhcp>
+    </ip>
+</network>
