@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. common.sh
+
 set -o nounset # Treat unset variables as an error
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 set -x
@@ -11,27 +13,20 @@ set -x
 # --import = Skip the OS installation process, and build a guest around an existing
 # disk image. The device used for booting is the first device specified via
 # "--disk" or "--filesystem
-#
-# My local path
-# /usr/local/src/libvirt-example/images
-#
+
 # Example creating domain locally:
-# ./create_domain_local.sh qemu://system foo /usr/local/src/libvirt-example/images
+# ./create_domain_local_copy.sh foo
 #
-# TODO:
-# - Add image source as input parameter instead
 
-CONNECTION=${1}
-DOMAIN=${2}
-IMAGE_PATH=${3}
+DOMAIN=${1}
 
-cp ${IMAGE_PATH}/centos7_clone_source.qcow2 ${IMAGE_PATH}/${DOMAIN}.qcow2
+cp ${LOCAL_IMAGE_PATH}/centos7_clone_source.qcow2 ${LOCAL_IMAGE_PATH}/${DOMAIN}.qcow2
 
 virt-install \
-    --connect ${CONNECTION} \
+    --connect ${LOCAL_CONNECTION} \
     --name ${DOMAIN} \
     --ram 4096 \
-    --disk ${IMAGE_PATH}/${DOMAIN}.qcow2,format=qcow2,bus=virtio,cache=none,size=20 \
+    --disk ${LOCAL_IMAGE_PATH}/${DOMAIN}.qcow2,format=qcow2,bus=virtio,cache=none,size=20 \
     --vcpus 2 \
     --os-type linux \
     --os-variant rhel7 \
