@@ -9,7 +9,7 @@ set -x
 # work.
 #
 # Example:
-# ./create_domain_clone.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/image
+# ./create_domain_remote_clone.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/image
 #
 # TODO: Add set hostname. Copied from Niclas bash script
 # echo "Trying to set hostname to $name in VM"

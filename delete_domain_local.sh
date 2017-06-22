@@ -1,44 +1,16 @@
 #!/usr/bin/env bash
+. common.sh
 
 set -o nounset # Treat unset variables as an error
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 set -x
 
-# REMEMBER:
-# There must be an image "centos7_clone_source.qcow2" in the images directory (IMAGE_PATH)
-# on the local node for this script to work.
-#
-# --import = Skip the OS installation process, and build a guest around an existing
-# disk image. The device used for booting is the first device specified via
-# "--disk" or "--filesystem
-#
-# My local path
-# /usr/local/src/libvirt-example/images
-#
 # Example creating domain locally:
-# ./create_domain_local.sh foo
-#
-# TODO:
-# - Add image source as input parameter instead
+# ./delete_domain_local.sh foo
 
-CONNECTION="qemu:///system"
-IMAGE_PATH="/usr/local/src/libvirt-example/images"
-DOMAIN=${1}
+readonly DOMAIN=${1}
 
-cp ${IMAGE_PATH}/centos7_clone_source.qcow2 ${IMAGE_PATH}/${DOMAIN}.qcow2
+virsh -c ${LOCAL_CONNECTION} destroy ${DOMAIN}
+virsh -c ${LOCAL_CONNECTION} undefine ${DOMAIN}
 
-virt-install \
-    --connect ${CONNECTION} \
-    --name ${DOMAIN} \
-    --ram 4096 \
-    --disk ${IMAGE_PATH}/${DOMAIN}.qcow2,format=qcow2,bus=virtio,cache=none,size=20 \
-    --vcpus 2 \
-    --os-type linux \
-    --os-variant rhel7 \
-    --network=bridge:virbr0,model=virtio \
-    --console pty,target_type=serial \
-    --keymap=sv-latin1 \
-    --noautoconsole \
-    --import \
-    --accelerate \
-    --debug
+rm ${LOCAL_IMAGE_PATH}/${DOMAIN}.qcow2

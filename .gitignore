@@ -47,3 +47,7 @@ fabric.properties
 /thrash/
 /thrash/get_domain_ip_address.sh
 /images/
+!/images/centos7_clone_source.qcow2
+!/images/
+/images/CentOS-7-x86_64-NetInstall-1611.iso
+!/images/foo.qcow2

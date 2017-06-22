@@ -16,7 +16,7 @@ set -x
 # /var/lib/libvirt/images
 #
 # Example creating domain on remote node. Depends on :
-# ./create_domain_remote.sh qemu+ssh://<some_user>@<remote-host>/system <domain_name> <image-path>
+# ./create_domain_remote_copy.sh qemu+ssh://<some_user>@<remote-host>/system <domain_name> <image-path>
 #
 # TODO:
 # - Remote copy over ssh seems very slow. Is there a better way?
