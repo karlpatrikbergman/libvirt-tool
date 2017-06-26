@@ -14,6 +14,7 @@ virt-manager is a GUI that can be used to create, destroy, stop, start and edit 
 **domain**  
 A domain is an instance of an operating system running on a virtualized machine. A guest domain can refer to either a running virtual machine or a configuration which can be used to launch a virtual machine.
 
+&nbsp;
 ***
 
 ## Create vm on local host (using copy)
