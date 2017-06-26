@@ -13,8 +13,8 @@ virt-manager is a GUI that can be used to create, destroy, stop, start and edit 
 
 **domain**  
 A domain is an instance of an operating system running on a virtualized machine. A guest domain can refer to either a running virtual machine or a configuration which can be used to launch a virtual machine.
- 
----
+
+***
 
 ## Create vm on local host (using copy)
 Run bash script with the name of the vm as input argument:
@@ -25,6 +25,9 @@ Get ip address of vm. Note that arp must be installed.
 ```shell
 $ sudo ./get_domain_ip_address_local.sh foo
 ```
+
+***
+
 ## Create vm on local host (using clone)
 This version is somewhat faster.  
 Run bash script with the name of the vm as input argument:
@@ -32,6 +35,8 @@ Run bash script with the name of the vm as input argument:
 $ ./create_domain_local_clone.sh bar
 ```
 Get ip address of vm, see above
+
+***
 
 ## Create vm on remote host (using clone)
 Run bash script with remote host connection, domain name and remote images directory as arguments.
