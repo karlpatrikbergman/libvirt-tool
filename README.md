@@ -23,7 +23,7 @@ $ ./create_domain_local_copy.sh foo
 ```
 Get ip address of vm. Note that arp must be installed. 
 ```shell
-$ sudo ./get_domain_ip_address_local.sh foo
+$ sudo ./get_domain_ip_address_local.sh foo  
 ```
 
 ***
@@ -34,7 +34,7 @@ Run bash script with the name of the vm as input argument:
 ```shell
 $ ./create_domain_local_clone.sh bar
 ```
-Get ip address of vm, see above
+Get ip address of vm, see above  
 
 ***
 
