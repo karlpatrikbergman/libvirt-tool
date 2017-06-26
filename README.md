@@ -36,6 +36,7 @@ $ ./create_domain_local_clone.sh bar
 ```
 Get ip address of vm, see above  
 
+&nbsp;
 ***
 
 ## Create vm on remote host (using clone)
