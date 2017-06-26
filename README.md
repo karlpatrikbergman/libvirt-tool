@@ -25,7 +25,7 @@ Get ip address of vm. Note that arp must be installed.
 ```shell
 $ sudo ./get_domain_ip_address_local.sh foo  
 ```
-
+&nbsp;
 ***
 
 ## Create vm on local host (using clone)
