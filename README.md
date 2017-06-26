@@ -50,3 +50,12 @@ Get ip address of vm on remote host with arguments "remote host connection", "do
 $ ./get_domain_ip_address.sh qemu+ssh://root@tnm-vm7/system pabe_test 172.16.15.0/24 br0
 ```
 
+&nbsp;
+***
+
+## Create vm on remote host (using copy)
+Run bash script with remote host connection, domain name and remote images directory as arguments.
+```shell
+$ ./create_domain_remote_copy.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/images
+```
+Get ip address of vm, see above
