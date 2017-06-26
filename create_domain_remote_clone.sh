@@ -1,21 +1,16 @@
 #!/bin/bash - 
+. common_settings.sh
 
-set -o nounset # Treat unset variables as an error
-export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
-set -x
-
-# REMEMBER:
-# There must be a domain "centos7_clone_source" in directory "/var/lib/libvirt/images" on the node for this script to
-# work.
-#
 # Example:
-# ./create_domain_remote_clone.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/image
-#
-# TODO: Add set hostname. Copied from Niclas bash script
-# echo "Trying to set hostname to $name in VM"
-# ping -c1 tnm-centos7 && sshpass -v -p$SSHPASSWORD ssh -v root@tnm-centos7 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "hostnamectl set-hostname $name && reboot" && echo "Set hostname to $name"
+# ./create_domain_remote_clone.sh qemu+ssh://root@tnm-vm7/system pabe_test2 /var/lib/libvirt/images
 
+readonly SCRIPT_NAME=`basename "$0"`
 
+if [[ $# -ne 3 ]] ; then
+  echo "Usage: ${SCRIPT_NAME} <qemu-ssh-connection> <domain> <image-path>"
+  echo "Example: ${SCRIPT_NAME} qemu+ssh://root@tnm-vm7/system pabe_test2 /var/lib/libvirt/images"
+  exit 0
+fi
 
 CONNECTION=${1}
 DOMAIN=${2}

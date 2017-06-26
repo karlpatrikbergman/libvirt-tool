@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-. common.sh
+. common_settings.sh
 
-# TODO: Make ssh host dynamic
-
+# Prerequisites:
+# arp-scan must be installed, emerge net-analyzer/arp-scan
+#
 # Example:
-# ./get_domain_ip_address.sh qemu+ssh://root@tnm-vm7/system centos-shilpa 172.16.15.0/24 br0
+# ./get_domain_ip_address.sh qemu+ssh://root@tnm-vm7/system pabe_test 172.16.15.0/24 br0
 
 CONNECTION=${1}
 DOMAIN=${2}

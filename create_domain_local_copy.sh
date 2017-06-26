@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-. common.sh
+. common_settings.sh
+. common_local_variables.sh
 
 # Creates a new domain by first copying an existing image file
 #

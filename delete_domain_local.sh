@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
-. common.sh
-
-set -o nounset # Treat unset variables as an error
-export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
-set -x
+. common_settings.sh
+. common_local_variables.sh
 
 # Example creating domain locally:
 # ./delete_domain_local.sh foo

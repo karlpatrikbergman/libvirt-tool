@@ -21,4 +21,26 @@ Run bash script with the name of the vm as input argument:
 ```shell
 $ ./create_domain_local_copy.sh foo
 ```
+Get ip address of vm. Note that arp must be installed. 
+```shell
+$ sudo ./get_domain_ip_address_local.sh foo
+```
+## Create vm on local host (using clone)
+This version is somewhat faster.  
+Run bash script with the name of the vm as input argument:
+```shell
+$ ./create_domain_local_clone.sh bar
+```
+Get ip address of vm, see above
+
+## Create vm on remote host (using clone)
+Run bash script with remote host connection, domain name and remote images directory as arguments.
+```shell
+$ ./create_domain_remote_clone.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/images
+```
+Get ip address of vm on remote host with arguments "remote host connection", "domain name", "subnetwork" and 
+"virtual bridge". Note that arp must be installed. 
+```shell
+$ ./get_domain_ip_address.sh qemu+ssh://root@tnm-vm7/system pabe_test 172.16.15.0/24 br0
+```
 

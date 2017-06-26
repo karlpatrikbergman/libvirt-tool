@@ -1,15 +1,19 @@
 #!/bin/bash - 
-. common.sh
+. common_settings.sh
+. common_local_variables.sh
 
-# REMEMBER:
-# There must be a domain "centos7_clone_source" in directory "/var/lib/libvirt/images" for this script to work.
+# Creates a new domain by cloning copying an existing domain
 #
 # Example:
 # ./create_domain_remote_clone.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/image
 #
-# TODO: Add set hostname. Copied from Niclas bash script
-# echo "Trying to set hostname to $name in VM"
-# ping -c1 tnm-centos7 && sshpass -v -p$SSHPASSWORD ssh -v root@tnm-centos7 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "hostnamectl set-hostname $name && reboot" && echo "Set hostname to $name"
+
+readonly SCRIPT_NAME=`basename "$0"`
+
+if [[ $# -ne 1 ]] ; then
+  echo "Usage: ${SCRIPT_NAME} <domain-name>"
+  exit 0
+fi
 
 DOMAIN=${1}
 
@@ -17,9 +21,9 @@ virt-clone \
     --connect ${LOCAL_CONNECTION} \
     --original ${LOCAL_CLONE_SOURCE} \
     --name ${DOMAIN} \
-    --file ${IMAGE_PATH}/${DOMAIN}.qcow2 \
+    --file ${LOCAL_IMAGE_PATH}/${DOMAIN}.qcow2 \
     --debug
 
 virsh \
-    -c ${CONNECTION} \
+    -c ${LOCAL_CONNECTION} \
     start ${DOMAIN}

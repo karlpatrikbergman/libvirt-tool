@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-. common.sh
+. common_settings.sh
 
 virsh -c ${LOCAL_CONNECTION}

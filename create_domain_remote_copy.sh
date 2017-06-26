@@ -1,27 +1,16 @@
 #!/usr/bin/env bash
+. common_settings.sh
 
-set -o nounset # Treat unset variables as an error
-export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
-set -x
+# Example:
+# ./create_domain_remote_copy.sh qemu+ssh://root@tnm-vm7/system pabe_test2 /var/lib/libvirt/images
 
-# REMEMBER:
-# There must be an image "centos7_clone_source.qcow2" in the images directory (IMAGE_PATH)
-# on the remote node for this script to work.
-#
-# --import = Skip the OS installation process, and build a guest around an existing
-# disk image. The device used for booting is the first device specified via
-# "--disk" or "--filesystem
-#
-# Remote node image path example:
-# /var/lib/libvirt/images
-#
-# Example creating domain on remote node. Depends on :
-# ./create_domain_remote_copy.sh qemu+ssh://<some_user>@<remote-host>/system <domain_name> <image-path>
-#
-# TODO:
-# - Remote copy over ssh seems very slow. Is there a better way?
-# - Add image source as input parameter instead
+readonly SCRIPT_NAME=`basename "$0"`
 
+if [[ $# -ne 3 ]] ; then
+  echo "Usage: ${SCRIPT_NAME} <qemu-ssh-connection> <domain> <image-path>"
+  echo "Example: ${SCRIPT_NAME} qemu+ssh://root@tnm-vm7/system pabe_test2 /var/lib/libvirt/images"
+  exit 0
+fi
 
 CONNECTION=${1}
 DOMAIN=${2}
