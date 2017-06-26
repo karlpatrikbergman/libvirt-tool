@@ -17,7 +17,7 @@ A domain is an instance of an operating system running on a virtualized machine.
 &nbsp;
 ***
 
-## Create vm on local host (using copy)
+## Create vm on local host (using copy) 
 Run bash script with the name of the vm as input argument:
 ```shell
 $ ./create_domain_local_copy.sh foo
@@ -27,7 +27,7 @@ Get ip address of vm. Note that arp must be installed.
 $ sudo ./get_domain_ip_address_local.sh foo  
 ```
 &nbsp;
-***
+*** 
 
 ## Create vm on local host (using clone)
 This version is somewhat faster.  
