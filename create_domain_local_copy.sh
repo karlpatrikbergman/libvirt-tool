@@ -15,7 +15,7 @@ readonly SCRIPT_NAME=`basename "$0"`
 
 if [[ $# -ne 1 ]] ; then
   echo "Usage: ${SCRIPT_NAME} <domain-name>"
-  exit 0
+  exit 1
 fi
 
 DOMAIN=${1}

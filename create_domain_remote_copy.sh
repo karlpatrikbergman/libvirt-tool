@@ -9,7 +9,7 @@ readonly SCRIPT_NAME=`basename "$0"`
 if [[ $# -ne 3 ]] ; then
   echo "Usage: ${SCRIPT_NAME} <qemu-ssh-connection> <domain> <image-path>"
   echo "Example: ${SCRIPT_NAME} qemu+ssh://root@tnm-vm7/system pabe_test2 /var/lib/libvirt/images"
-  exit 0
+  exit 1
 fi
 
 CONNECTION=${1}
