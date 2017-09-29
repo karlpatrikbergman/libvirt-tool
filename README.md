@@ -59,4 +59,22 @@ Run bash script with remote host connection, domain name and remote images direc
 ```shell
 $ ./create_domain_remote_copy.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/images
 ```
-Get ip address of vm, see above
+
+&nbsp;
+***
+virsh
+## Connect to local host and list vm:s
+```shell
+$  virsh -c qemu:///system
+virsh # list
+```
+## Connect to tnm-vm7 and list vm:s
+```shell
+$ virsh -c qemu+ssh://root@tnm-vm7/system
+virsh # list
+         Id    Name                           State
+        ----------------------------------------------------
+         1     centos-kini                    running
+         2     centos-stos                    running
+...
+```
