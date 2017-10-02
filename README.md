@@ -1,4 +1,15 @@
-# Libvirt Examples
+# Libvirt Tool
+This is a tool to facilitate the creating and deleting of domains/virtual machines on hosts on our local network
+running hypvervisors, such as for example tnm-vm7. To use on you local development machine, clone to appropriate 
+directory and source `libvirt_tool.sh` your `.bashrc` file
+
+```shell
+if [ -d /usr/local/src/bash-unit-test ]; then
+    source '/usr/local/src/bash-unit-test/assert.sh'
+fi
+```
+
+
 ## libvirt - Virtualization API
 Libvirt is a toolkit to interact with the virtualization of recent versions of Linux. libvirt supports KVM/QEMU and many others (as Virtualbox, Xen, LXC for example). These software pieces include an API library, a daemon (libvirtd), and a command line utility (virsh).
  
