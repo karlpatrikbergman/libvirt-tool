@@ -11,8 +11,13 @@ virt-install is a command line tool that simplifies the process of creating a vi
 **virt-manager**  
 virt-manager is a GUI that can be used to create, destroy, stop, start and edit virtual machines and configure the virtual environment (such as virtual networks etc)
 
-**domain**  
-A domain is an instance of an operating system running on a virtualized machine. A guest domain can refer to either a running virtual machine or a configuration which can be used to launch a virtual machine.
+### Terminology
+To avoid ambiguity about the terms used, here are the definitions for some of the specific concepts used in libvirt documentation:
+
+* A Node is a single physical machine
+* An Hypervisor is a layer of software allowing to virtualize a node in a set of virtual machines with possibly different configurations than the node itself
+* A Domain is an instance of an operating system (or subsystem in the case of container virtualization) running on a virtualized machine provided by the hypervisor
+    * A Domain is an instance of an operating system running on a virtualized machine. A guest domain can refer to either a running virtual machine or a configuration which can be used to launch a virtual machine.
 
 &nbsp;
 ***
