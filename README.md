@@ -4,8 +4,8 @@ hypvervisors, such as for example tnm-vm7. To use on you local development machi
 source `libvirt_tool.sh` in your `.bashrc` file
 
 ```shell
-if [ -d /usr/local/src/bash-unit-test ]; then
-    source '/usr/local/src/bash-unit-test/assert.sh'
+if [ -d /usr/local/src/<some-directory> ]; then
+    source '/usr/local/src/<some-directory>/libvirt_tool.sh'
 fi
 ```
 &nbsp;
