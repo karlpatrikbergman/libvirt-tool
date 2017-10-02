@@ -19,6 +19,8 @@ To avoid ambiguity about the terms used, here are the definitions for some of th
 * A Domain is an instance of an operating system (or subsystem in the case of container virtualization) running on a virtualized machine provided by the hypervisor
     * A Domain is an instance of an operating system running on a virtualized machine. A guest domain can refer to either a running virtual machine or a configuration which can be used to launch a virtual machine.
 
+![alt text](https://libvirt.org/node.gif "")
+
 &nbsp;
 ***
 &nbsp;
