@@ -21,6 +21,7 @@ To avoid ambiguity about the terms used, here are the definitions for some of th
 
 &nbsp;
 ***
+&nbsp;
 
 # Remote host is tnm-vm7
 ## Create vm on tnm-vm7 (physical machine)
