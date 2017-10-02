@@ -1,7 +1,7 @@
 # Libvirt Tool
-This is a tool to facilitate the creating and deleting of domains/virtual machines on hosts on our local network
-running hypvervisors, such as for example tnm-vm7. To use on you local development machine, clone to appropriate 
-directory and source `libvirt_tool.sh` your `.bashrc` file
+This is a tool to facilitate the creating and deleting of domains/virtual machines on hosts on our local network running 
+hypvervisors, such as for example tnm-vm7. To use on you local development machine, clone to appropriate  directory and 
+source `libvirt_tool.sh` your `.bashrc` file
 
 ```shell
 if [ -d /usr/local/src/bash-unit-test ]; then
@@ -11,24 +11,32 @@ fi
 
 
 ## libvirt - Virtualization API
-Libvirt is a toolkit to interact with the virtualization of recent versions of Linux. libvirt supports KVM/QEMU and many others (as Virtualbox, Xen, LXC for example). These software pieces include an API library, a daemon (libvirtd), and a command line utility (virsh).
+Libvirt is a toolkit to interact with the virtualization of recent versions of Linux. libvirt supports KVM/QEMU and many 
+others (as Virtualbox, Xen, LXC for example). These software pieces include an API library, a daemon (libvirtd), and a 
+command line utility (virsh).
  
 **virsh**  
-virsh is a command line interface that can be used to create, destroy, stop start and edit virtual machines and configure the virtual environment (such as virtual networks etc)
+virsh is a command line interface that can be used to create, destroy, stop start and edit virtual machines and configure 
+the virtual environment (such as virtual networks etc)
  
 **virt-install**  
 virt-install is a command line tool that simplifies the process of creating a virtual machine.
  
 **virt-manager**  
-virt-manager is a GUI that can be used to create, destroy, stop, start and edit virtual machines and configure the virtual environment (such as virtual networks etc)
+virt-manager is a GUI that can be used to create, destroy, stop, start and edit virtual machines and configure the 
+virtual environment (such as virtual networks etc)
 
 ### Terminology
-To avoid ambiguity about the terms used, here are the definitions for some of the specific concepts used in libvirt documentation:
+To avoid ambiguity about the terms used, here are the definitions for some of the specific concepts used in libvirt 
+documentation:
 
 * A Node is a single physical machine
-* An Hypervisor is a layer of software allowing to virtualize a node in a set of virtual machines with possibly different configurations than the node itself
-* A Domain is an instance of an operating system (or subsystem in the case of container virtualization) running on a virtualized machine provided by the hypervisor
-    * A Domain is an instance of an operating system running on a virtualized machine. A guest domain can refer to either a running virtual machine or a configuration which can be used to launch a virtual machine.
+* An Hypervisor is a layer of software allowing to virtualize a node in a set of virtual machines with possibly 
+different configurations than the node itself
+* A Domain is an instance of an operating system (or subsystem in the case of container virtualization) running on a 
+virtualized machine provided by the hypervisor
+    * A Domain is an instance of an operating system running on a virtualized machine. A guest domain can refer to 
+    either a running virtual machine or a configuration which can be used to launch a virtual machine.
 
 ![alt text](https://libvirt.org/node.gif "")
 
@@ -45,14 +53,16 @@ $ create_domain_on_tnm_vm7 <domain-name>
 &nbsp;
 
 ## Get ip address of vm on tnm-vm7
-To get the ip number of a domain/vm running on tnm-vm7 (physical machine), run function `get_ip_address_of_vm_on_tnm_vm7` with name of domain/vm as argument
+To get the ip number of a domain/vm running on tnm-vm7 (physical machine), run function `get_ip_address_of_vm_on_tnm_vm7` 
+with name of domain/vm as argument
 ```shell
 $ get_ip_address_of_vm_on_tnm_vm7 <domain-name>
 ```
 &nbsp;
 
 ## Delete vm on tnm-vm7
-To delete a domain/vm running on tnm-vm7 (physical machine), run function `delete_domain_on_tnm_vm7` with name of domain/vm as argument
+To delete a domain/vm running on tnm-vm7 (physical machine), run function `delete_domain_on_tnm_vm7` with name of 
+domain/vm as argument
 ```shell
 $ delete_domain_on_tnm_vm7 <domain-name>
 ```
@@ -69,14 +79,15 @@ $ create_domain_remote root@tnm-vm7 centos7_clone_source centos-jodo /var/lib/li
 &nbsp;
 
 ## Get ip address of vm running on remote host
-Get ip address of vm on remote host by running bash function `get_ip_address_of_vm` with user@host of host running hypervisor,
-domain name, ip address of gateway and host bridge as arguments. 
+Get ip address of vm on remote host by running bash function `get_ip_address_of_vm` with user@host of host running 
+hypervisor, domain name, ip address of gateway and host bridge as arguments. 
 "virtual bridge". Note that arp must be installed. 
 ```shell
 $ get_ip_address_of_vm root@tnm-vm7 centos-jodo 172.16.15.0/24 br0
 ```
 ## Delete vm on remote host
-Run bash function `delete_domain_remote` with user@host of host running hypervisor, domain name and remote images directory as arguments.
+Run bash function `delete_domain_remote` with user@host of host running hypervisor, domain name and remote images 
+directory as arguments.
 ```shell
 $ delete_domain_remote root@tnm-vm7 centos-jodo /var/lib/libvirt/images
 ```
