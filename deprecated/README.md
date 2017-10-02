@@ -16,39 +16,48 @@ A domain is an instance of an operating system running on a virtualized machine.
 
 &nbsp;
 ***
-## Create vm on tnm-vm7 (physical machine)
-Run bash function create_domain_on_tnm_vm7 with name of new domain/vm as argument
-```shell
-$ create_domain_on_tnm_vm7 <domain-name>
-```
 
-## Get ip address of vm on tnm-vm7
-Run bash function get_ip_address_of_vm_on_tnm_vm7 with name of new domain/vm as argument
+## Create vm on local host (using copy) 
+Run bash script with the name of the vm as input argument:
 ```shell
-$ get_ip_address_of_vm_on_tnm_vm7 <domain-name>
+$ ./create_domain_local_copy.sh foo
 ```
+Get ip address of vm. Note that arp must be installed. 
+```shell
+$ sudo ./get_domain_ip_address_local.sh foo  
+```
+&nbsp;
+*** 
 
-## Delete vm on tnm-vm7
-Run bash delete_domain_on_tnm_vm7 with name of new domain/vm as argument
+## Create vm on local host (using clone)
+This version is somewhat faster.  
+Run bash script with the name of the vm as input argument:
 ```shell
-$ delete_domain_on_tnm_vm7 <domain-name>
+$ ./create_domain_local_clone.sh bar
 ```
+Get ip address of vm, see above  
+
+&nbsp;
+***
 
 ## Create vm on remote host (using clone)
-Run bash function with user@host of host running hypervisor, clone source, domain name and remote images directory as arguments.
+Run bash script with remote host connection, domain name and remote images directory as arguments.
 ```shell
-$ create_domain_remote root@tnm-vm7 centos7_clone_source centos-jodo /var/lib/libvirt/images
+$ ./create_domain_remote_clone.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/images
 ```
-Get ip address of vm on remote host by running bash function get_ip_address_of_vm with user@host of host running hypervisor,
-domain name, ip address of gateway and host bridge as arguments. 
+Get ip address of vm on remote host with arguments "remote host connection", "domain name", "subnetwork" and 
 "virtual bridge". Note that arp must be installed. 
 ```shell
-$ get_ip_address_of_vm root@tnm-vm7 centos-jodo 172.16.15.0/24 br0
+$ ./get_domain_ip_address.sh qemu+ssh://root@tnm-vm7/system pabe_test 172.16.15.0/24 br0
 ```
-## Delete vm on remote host
-Run bash function delete_domain_remote with user@host of host running hypervisor, domain name and remote images directory as arguments.
+
+&nbsp;
+***
+
+## Create vm on remote host (using copy)
+Run bash script with remote host connection, domain name and remote images directory as arguments.
 ```shell
-$ delete_domain_remote root@tnm-vm7 centos-jodo /var/lib/libvirt/images
+$ ./create_domain_remote_copy.sh qemu+ssh://root@tnm-vm7/system pabe_test /var/lib/libvirt/images
 ```
 
 &nbsp;

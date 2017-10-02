@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 . common_settings.sh
-./check_if_root.sh
+check_if_root.sh
 
 # Prerequisites:
 # arp-scan must be installed, emerge net-analyzer/arp-scan

@@ -3,6 +3,8 @@ set -o nounset # Treat unset variables as an error
 #export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 #set -x
 
+## Please feel free to add functions for other hosts running kvm (tnm-vmX)
+
 get_ip_address_of_vm() {
     if [[ $# -ne 4 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <user@host> <domain-name> <network> <interface>\n"
@@ -80,6 +82,7 @@ create_domain_on_tnm_vm7() {
 
     create_domain_remote ${USER_AT_HOST} ${DOMAIN_CLONE_SOURCE} ${DOMAIN_NAME} ${IMAGE_PATH}
 }
+
 
 delete_domain_remote() {
      if [[ $# -ne 3 ]] ; then
