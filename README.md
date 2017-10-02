@@ -1,7 +1,7 @@
 # Libvirt Tool
 This is a tool to facilitate the creating and deleting of domains/virtual machines on hosts on our local network running 
 hypvervisors, such as for example tnm-vm7. To use on you local development machine, clone to appropriate  directory and 
-source `libvirt_tool.sh` your `.bashrc` file
+source `libvirt_tool.sh` in your `.bashrc` file
 
 ```shell
 if [ -d /usr/local/src/bash-unit-test ]; then
