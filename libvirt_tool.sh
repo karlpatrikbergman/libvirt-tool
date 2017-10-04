@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-set -o nounset # Treat unset variables as an error
+# set -o nounset # Treat unset variables as an error
 #export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 #set -x
 
 ## Please feel free to add functions for other hosts running kvm (tnm-vmX)
 
-get_ip_address_of_vm() {
+lv_get_ip_address_of_vm() {
     if [[ $# -ne 4 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <user@host> <domain-name> <network> <interface>\n"
         printf "Example: ${FUNCNAME[0]} root@tnm-vm7 centos-jodo 172.16.15.0/24 br0\n"
@@ -25,7 +25,7 @@ get_ip_address_of_vm() {
     done
 }
 
-get_ip_address_of_vm_on_tnm_vm7() {
+lv_get_ip_address_of_vm_on_tnm_vm7() {
     if [[ $# -ne 1 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <domain-name>\n"
         printf "Example: ${FUNCNAME[0]} centos-jodo\n"
@@ -33,7 +33,7 @@ get_ip_address_of_vm_on_tnm_vm7() {
     fi
 
     local readonly DOMAIN_NAME="${1}"
-    local readonly IP_ADDRESS=$(get_ip_address_of_vm root@tnm-vm7 ${DOMAIN_NAME} 172.16.15.0/24 br0)
+    local readonly IP_ADDRESS=$(lv_get_ip_address_of_vm root@tnm-vm7 ${DOMAIN_NAME} 172.16.15.0/24 br0)
     echo "${IP_ADDRESS}"
 }
 
@@ -42,7 +42,7 @@ get_ip_address_of_vm_on_tnm_vm7() {
 #                           must be in folder <image-path>
 # <domain-name>             The name of the new domain
 # <image-path>              The path to a directory on the host where domain images are stored
-create_domain_remote() {
+lv_create_domain_remote() {
     if [[ $# -ne 4 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <user@host> <domain-clone-source> <domain-name> <image-path>\n"
         printf "Example: ${FUNCNAME[0]} root@tnm-vm7 centos7_clone_source centos-jodo /var/lib/libvirt/images\n"
@@ -68,7 +68,7 @@ create_domain_remote() {
 }
 
 # tnm-vm7 is a physical machine
-create_domain_on_tnm_vm7() {
+lv_create_domain_on_tnm_vm7() {
     if [[ $# -ne 1 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <domain-name>\n"
         printf "Example: ${FUNCNAME[0]} centos-jodo\n"
@@ -80,11 +80,11 @@ create_domain_on_tnm_vm7() {
     local readonly IMAGE_PATH="/var/lib/libvirt/images"
     local readonly DOMAIN_CLONE_SOURCE="centos7_clone_source"
 
-    create_domain_remote ${USER_AT_HOST} ${DOMAIN_CLONE_SOURCE} ${DOMAIN_NAME} ${IMAGE_PATH}
+    lv_create_domain_remote ${USER_AT_HOST} ${DOMAIN_CLONE_SOURCE} ${DOMAIN_NAME} ${IMAGE_PATH}
 }
 
 
-delete_domain_remote() {
+lv_delete_domain_remote() {
      if [[ $# -ne 3 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <user@host> <domain-name> <image-path>\n"
         printf "Example: ${FUNCNAME[0]} root@tnm-vm7 centos-jodo /var/lib/libvirt/images\n"
@@ -101,7 +101,7 @@ delete_domain_remote() {
     ssh ${USER_AT_HOST} "rm -f ${IMAGE_PATH}/${DOMAIN_NAME}.qcow2"
 }
 
-delete_domain_on_tnm_vm7() {
+lv_delete_domain_on_tnm_vm7() {
     if [[ $# -ne 1 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <domain-name>\n"
         printf "Example: ${FUNCNAME[0]} centos-jodo\n"
@@ -112,6 +112,9 @@ delete_domain_on_tnm_vm7() {
     local readonly USER_AT_HOST="root@tnm-vm7"
     local readonly IMAGE_PATH="/var/lib/libvirt/images"
 
-    delete_domain_remote ${USER_AT_HOST} ${DOMAIN_NAME}} ${IMAGE_PATH}
+    lv_delete_domain_remote ${USER_AT_HOST} ${DOMAIN_NAME} ${IMAGE_PATH}
 }
 
+lv_connect_to_tnm_vm7() {
+    virsh -c qemu+ssh://root@tnm-vm7/system
+}
