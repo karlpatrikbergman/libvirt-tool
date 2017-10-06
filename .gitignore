@@ -21,3 +21,5 @@
 !/images/
 /images/CentOS-7-x86_64-NetInstall-1611.iso
 !/images/foo.qcow2
+/libvirt-tool.iml
+/workbench.sh

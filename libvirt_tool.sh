@@ -11,7 +11,6 @@ lv_get_ip_address_of_vm() {
         printf "Example: ${FUNCNAME[0]} root@tnm-vm7 centos-jodo 172.16.15.0/24 br0\n"
         return 1
     fi
-
     local readonly USER_AT_HOST="${1}"
     local readonly DOMAIN="${2}"
     local readonly NETWORK="${3}"
@@ -28,12 +27,11 @@ lv_get_ip_address_of_vm() {
 lv_get_ip_address_of_vm_on_tnm_vm7() {
     if [[ $# -ne 1 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <domain-name>\n"
-        printf "Example: ${FUNCNAME[0]} centos-jodo\n"
         return 1
     fi
-
     local readonly DOMAIN_NAME="${1}"
     local readonly IP_ADDRESS=$(lv_get_ip_address_of_vm root@tnm-vm7 ${DOMAIN_NAME} 172.16.15.0/24 br0)
+
     echo "${IP_ADDRESS}"
 }
 
@@ -48,7 +46,6 @@ lv_create_domain_remote() {
         printf "Example: ${FUNCNAME[0]} root@tnm-vm7 centos7_clone_source centos-jodo /var/lib/libvirt/images\n"
         return 1
     fi
-
     local readonly USER_AT_HOST="${1}"
     local readonly DOMAIN_CLONE_SOURCE="${2}"
     local readonly DOMAIN_NAME="${3}"
@@ -71,10 +68,8 @@ lv_create_domain_remote() {
 lv_create_domain_on_tnm_vm7() {
     if [[ $# -ne 1 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <domain-name>\n"
-        printf "Example: ${FUNCNAME[0]} centos-jodo\n"
         return 1
     fi
-
     local readonly DOMAIN_NAME="${1}"
     local readonly USER_AT_HOST="root@tnm-vm7"
     local readonly IMAGE_PATH="/var/lib/libvirt/images"
@@ -83,14 +78,12 @@ lv_create_domain_on_tnm_vm7() {
     lv_create_domain_remote ${USER_AT_HOST} ${DOMAIN_CLONE_SOURCE} ${DOMAIN_NAME} ${IMAGE_PATH}
 }
 
-
 lv_delete_domain_remote() {
      if [[ $# -ne 3 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <user@host> <domain-name> <image-path>\n"
         printf "Example: ${FUNCNAME[0]} root@tnm-vm7 centos-jodo /var/lib/libvirt/images\n"
         return 1
     fi
-
     local readonly USER_AT_HOST="${1}"
     local readonly DOMAIN_NAME="${2}"
     local readonly IMAGE_PATH="${3}"
@@ -104,15 +97,28 @@ lv_delete_domain_remote() {
 lv_delete_domain_on_tnm_vm7() {
     if [[ $# -ne 1 ]] ; then
         printf "Usage: ${FUNCNAME[0]} <domain-name>\n"
-        printf "Example: ${FUNCNAME[0]} centos-jodo\n"
         return 1
     fi
-
     local readonly DOMAIN_NAME="${1}"
     local readonly USER_AT_HOST="root@tnm-vm7"
     local readonly IMAGE_PATH="/var/lib/libvirt/images"
 
     lv_delete_domain_remote ${USER_AT_HOST} ${DOMAIN_NAME} ${IMAGE_PATH}
+}
+
+lv_set_hostname() {
+    if [[ $# -ne 4 ]] ; then
+        printf "Usage: ${FUNCNAME[0]} <ipaddress> <user> <password> <hostname>\n"
+        return 1
+    fi
+    local readonly IPADDRESS="${1}"
+    local readonly USER="${2}"
+    local readonly SSHPASSWORD="${3}"
+    local readonly HOST_NAME="${4}"
+
+    ping -c1 ${IPADDRESS} && sshpass -p ${SSHPASSWORD} ssh -v ${USER}@${IPADDRESS} -o \
+        UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+        "hostnamectl set-hostname ${HOST_NAME} && reboot" && echo "Set hostname to ${HOST_NAME}"
 }
 
 lv_connect_to_tnm_vm7() {
